@@ -25,7 +25,9 @@ python import sys
 "
 "append sys.path so that modules can be found
 "relative path import only works with  package
-python sys.path.append('../modules/')
+let s:currentScriptPath = expand('<sfile>:p:h')
+let s:modulePath = s:currentScriptPath . '/../modules/'
+python sys.path.append(vim.eval('s:modulePath'))
 python from extract_thesaurus import *
 
 " note you cannot use python 'from extract_thesaurus import *' 
