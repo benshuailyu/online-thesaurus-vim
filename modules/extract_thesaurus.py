@@ -33,7 +33,7 @@ def online_thesaurus(word):
         new_family.fill_antonyms(parse_group(each_definition_group, 'antonym'))
         thesuarus_list.append(new_family)
 
-    if __DEBUG__ == 1:
+    if (__DEBUG__ == 1):
         for ai in thesuarus_list:
             ai.print_definition()
             ai.print_syntax()
@@ -42,5 +42,7 @@ def online_thesaurus(word):
 
     return thesuarus_list
 
-online_thesaurus("new")
+if (__DEBUG__ == 1):
+    online_thesaurus("new")
+
 
