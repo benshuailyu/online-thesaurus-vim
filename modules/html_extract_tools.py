@@ -1,23 +1,26 @@
+import sys
+import tempfile
+import re
+# here because python3 and python2 have different url package structure.
+# and also different builtin open function call signatures
+if sys.version_info[0] >= 3:
+    import urllib.request
+    common_urlretrieve = urllib.request.urlretrieve
+elif sys.version_info[0] <= 2:
+    import urllib
+    common_urlretrieve = urllib.urlretrieve
+    import io
+
+
 def save_retrieved_html(word):
     '''This function retrieves the html page for the word "word", 
     then save the file to a temporary file. The file name will 
     be returned at the end.
     '''
-    import sys
-    # here because python3 and python2 have different url package structure.
-    if sys.version_info[0] >= 3:
-        import urllib.request
-    elif sys.version_info[0] <= 2:
-        import urllib
-
-    import tempfile
 
     url = 'http://www.thesaurus.com/browse/' + word + '?s=t'
     temp_file_name = tempfile.mktemp()
-    if sys.version_info[0] >= 3:
-         urllib.request.urlretrieve(url, temp_file_name)
-    elif sys.version_info[0] <= 2:
-        urllib.urlretrieve(url, temp_file_name)
+    common_urlretrieve(url, temp_file_name)
     return temp_file_name
 
 
@@ -28,13 +31,11 @@ def extract_definition_line(tem_file_name):
     soley within one super long line. This function returns this long line using
     a string object
     '''
-    import sys
     # the following is because the builtin open function in python2 
     # does not support encoding parameter. use io.open instead. But
     # io.open().readline() returns the UNICODE STRING reprsentation of 
     # each character. Therefore you need to encode it using utf-8
     if sys.version_info[0] <= 2:
-        import io
         with io.open(tem_file_name, 'r', encoding='utf-8') as f:
             line = f.readline().encode('utf-8')
             while line != '':
@@ -81,7 +82,6 @@ def split_definition_groups(definition_line):
 
     and it returns a list of strings.
     '''
-    import re
     return re.findall(r"{\"isInformal\":.*?}\]}", definition_line)
     "note here we need to use non-greedy .*? arbitrary matches"
 
@@ -109,7 +109,6 @@ def extract_pair_values_via_key(str, key, value_quote_type):
     each member of which is a string. Otherwise it still return a list but 
     the length of which is one.
     '''
-    import re
 
     # first find all the pairs with the key
     if (value_quote_type == '"'):
@@ -138,7 +137,6 @@ def parse_group(explanation_group, type=None):
     parse_group(group, [type=]'antonym') # return a list of its antonyms 
 
     '''
-    import re
     if (type == None or type == 'definition'):
         definition_list = extract_pair_values_via_key(
             explanation_group, '"definition"', '"')
@@ -172,5 +170,4 @@ def parse_group(explanation_group, type=None):
     else:
         print('Error, unexpected request types')
         return None
-
 
