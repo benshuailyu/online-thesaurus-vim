@@ -13,7 +13,7 @@ synonyms and antonyms etc of a particluar meaning
 
 __DEBUG__ =  0
 from DefinitionFamily import *
-from htmlExtract import *
+from html_extract_tools import *
 
 
 def online_thesaurus(word):
