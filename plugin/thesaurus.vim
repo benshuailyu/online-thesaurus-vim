@@ -63,7 +63,7 @@ for each_family in definition_family_list:
 # delete the first empt
 cb[0] = None
 EOF
-
+setlocal nomodifiable filetype=thesaurus
 endfunction
 
 
