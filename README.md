@@ -2,6 +2,7 @@
 This is a vim plugin that retrieves the synonyms and antonyms of a given word from the website at www.thesaurus.com. 
 
 The credit for the original ideas go to Anton Beloglazov <http://beloglazov.info/> and Nick Coleman <http://www.nickcoleman.org/>. 
+![](./screenshot.png)
 
 This plugin is implemented partially because the original plugin by Anton at
 https://github.com/beloglazov/vim-online-thesaurus
