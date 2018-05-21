@@ -1,13 +1,14 @@
-# online-thesaurus-vimplug
+# Online-thesaurus-vimplug
 This is a vim plugin that retrieves the synonyms and antonyms of a given word from the website at www.thesaurus.com. 
 
 The credit for the original ideas go to Anton Beloglazov <http://beloglazov.info/> and Nick Coleman <http://www.nickcoleman.org/>. 
+![](./screenshot.png)
 
 This plugin is implemented partially because the original plugin by Anton at
 https://github.com/beloglazov/vim-online-thesaurus
 seems to have stopped working as for 12/05/2018 on vim 8.0 on windows or Mac. The original implementation was through a bash script so a git bash installation is normally needed on windows. The current implementation eliminates this necessity by programming the core functionality in python. 
 
-## pre-requisites
+## Pre-requisites
 1) Vim must have been compiled with python support (either python 2 or python 3 would work). 
 2) A python 2 or python 3 distribution is installed and it working properly with Vim. The plugin relies only on standard libraries so there is no need to install extra packages in your python distribution.
 
@@ -19,7 +20,7 @@ or
 
 If you can see the output "hello" in the message area you are good to go. If not, see the FAQ at the bottom.
 
-## installation 
+## Installation 
 For vim version > 8.0 you can  install the plugin by
 ```
 cd ~/.vim/pack/plugins/start/
@@ -33,7 +34,7 @@ cd ~/.vim/bundle/
 git clone https://github.com/Ben201310/online-thesaurus-vimplug
 ```
 
-## usage
+## Usage
 Usage is simple. 
 
 1) Put your cursor on the word whose antonyms and synonyms you would like to know, then press 
@@ -48,7 +49,7 @@ Usage is simple.
 :call Thesaurus_LookWord(‘quick’)
 ```
 
-## customization
+## Customization
 If you prefer a different key map for looking up the word under your cursor, put the following in the .vimrc file
 ```
 let g:use_default_key_map = 0
