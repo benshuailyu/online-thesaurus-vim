@@ -87,5 +87,7 @@ endif
 if (g:use_default_key_map)
 
     nnoremap <Leader>t :call Thesaurus_LookCurrentWord()<CR>
+    command! ThesaurusCurrent :call Thesaurus_LookCurrentWord()
+    command! -nargs=1 Thesaurus :call Thesaurus_LookWord(<q-args>)
 
 endif

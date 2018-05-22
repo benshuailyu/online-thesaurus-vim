@@ -43,10 +43,14 @@ Usage is simple.
  ```
  A preview windows will open at the bottom of the current window with retrieved content. You can close the window by pressing ```q```
 
-
-2) If you want to look for a word ‘quick’ for example. You can run 
+Alternatively, you could run the command 
 ```
-:call Thesaurus_LookWord(‘quick’)
+:ThesaurusCurrent<CR>
+```
+
+2) If you want to look for a specific word ‘quick’ for example. You can run 
+```
+:Thesaurus YOUOWNWORD<CR>
 ```
 
 ## Customization
