@@ -1,4 +1,4 @@
-# Online-thesaurus-vimplug
+# Online-thesaurus-vim
 This is a vim plugin that retrieves the synonyms and antonyms of a given word from the website at www.thesaurus.com. 
 
 The credit for the original ideas go to Anton Beloglazov <http://beloglazov.info/> and Nick Coleman <http://www.nickcoleman.org/>. 
@@ -24,14 +24,14 @@ If you can see the output "hello" in the message area you are good to go. If not
 For vim version > 8.0 you can  install the plugin by
 ```
 cd ~/.vim/pack/plugins/start/
-git clone https://github.com/Ben201310/online-thesaurus-vimplug
+git clone https://github.com/Ben201310/online-thesaurus-vim
 ```
 NOTE: on windows this should be ```cd ~/vimfiles/pack/plugins/start/```
 
 For vim version < 8.0 you can use Vundle or Pathogen. Take Pathogen as an example, you can
 ```
 cd ~/.vim/bundle/
-git clone https://github.com/Ben201310/online-thesaurus-vimplug
+git clone https://github.com/Ben201310/online-thesaurus-vim
 ```
 
 ## Usage
