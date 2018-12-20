@@ -1,12 +1,12 @@
 '''This program defines a function online_thesaurus()
-to find the synonyms and antonyms of a given word. 
+to find the synonyms and antonyms of a given word.
 The function syntax is
 
 online_thesaurus(word)
 
 where word is a string specifying the request word and
-the return value is a list of definition families. 
-A definition family is a class representing the definition, 
+the return value is a list of definition families.
+A definition family is a class representing the definition,
 synonyms and antonyms etc of a particluar meaning
 
 '''
