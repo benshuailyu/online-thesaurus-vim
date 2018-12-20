@@ -1,23 +1,23 @@
 " File: thesaurusPy2Vim.vim
 " Author: Benshuai Lyu
 " License: GPLv3
-" Description: 
+" Description:
 " 	" This is a vim script wrapper for the python plugin, which
 "	" retrieves the thesaurus of the given requested word from
 " 	" the website at www.thesaurus.com. Original idea comes from
-	"  Anton Beloglazov <http://beloglazov.info/> 
+	"  Anton Beloglazov <http://beloglazov.info/>
 	"  and
 	"  Nick Coleman <http://www.nickcoleman.org/>
 
 
-if exists("g:THESAURUSPY2VIM")
+if exists("g:thesauruspy2vim")
     finish
 endif
-let g:THESAURUSPY2VIM= 1
+let g:thesauruspy2vim= 1
 
 
 
-"take the import outside so that you don't need to import 
+"take the import outside so that you don't need to import
 "evertime you call the function
 
 python import vim
@@ -30,7 +30,7 @@ let s:modulePath = s:currentScriptPath . '/../modules/'
 python sys.path.append(vim.eval('s:modulePath'))
 python from extract_thesaurus import *
 
-" note you cannot use python 'from extract_thesaurus import *' 
+" note you cannot use python 'from extract_thesaurus import *'
 " because these "quotes will be carried over and the python
 " statement is a string obj.
 
