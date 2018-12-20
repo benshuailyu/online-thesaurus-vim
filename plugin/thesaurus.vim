@@ -1,26 +1,26 @@
 " File: thesaurus.vim
 " Author: Benshuai Lyu
 " License: GPLv3
-" Description: 
+" Description:
 " 	" This is a vim script wrapper for the python plugin which
 "	" retrieves the thesaurus of the given requested word from
 " 	" the website at www.thesaurus.com. Original idea comes from
-	"  Anton Beloglazov <http://beloglazov.info/> 
+	"  Anton Beloglazov <http://beloglazov.info/>
 	"  and
 	"  Nick Coleman <http://www.nickcoleman.org/>
 	" This specific wraper file (2nd half) exposes a handful of
 " 	" necessary commands and keymaps to users. Another wrapper
-" 	" file (1st half) bridges the graps between python and  
+" 	" file (1st half) bridges the graps between python and
 " 	" vim script is under autload for efficiency considerations.
 
 
-if exists("g:ONLINE_THESAURUS")
+if exists("g:online_thesaurus")
     finish
 endif
-let g:ONLINE_THESAURUS = 1
+let g:online_thesaurus = 1
 
 
-"create default mapping 
+"create default mapping
 "
 if !exists("g:use_default_key_map")
 
