@@ -1,18 +1,18 @@
 # Online-thesaurus-vim
-This is a vim plugin that retrieves the synonyms and antonyms of a given word from the website at www.thesaurus.com.
+This is a vim plugin that retrieves the synonyms and antonyms of a given word from the website www.thesaurus.com.
 
-The credit for the original ideas go to Anton Beloglazov <http://beloglazov.info/> and Nick Coleman <http://www.nickcoleman.org/>.
+The credit for the original ideas goes to Anton Beloglazov <http://beloglazov.info/> and Nick Coleman <http://www.nickcoleman.org/>.
 ![](./screenshot.png)
 
 This plugin is implemented partially because the original plugin by Anton at
 https://github.com/beloglazov/vim-online-thesaurus
-seems to have stopped working as for 12/05/2018 on vim 8.0 on windows or Mac. The original implementation was through a bash script so a git bash installation is normally needed on windows. The current implementation eliminates this necessity by programming the core functionality in python.
+seems to have stopped working as for 12/05/2018 with vim 8.0 on windows or Mac. The original implementation was through a bash script so a git bash installation is normally needed on windows. The current implementation eliminates this necessity by programming the core functionality in python.
 
 ## Pre-requisites
-1) Vim must have been compiled with python support (either python 2 or python 3 would work).
-2) A python 2 or python 3 distribution is installed and it working properly with Vim. The plugin relies only on standard libraries so there is no need to install extra packages in your python distribution.
+1) Vim must have been compiled with python support (either python 2 or python 3 would work. See the Customization section if only python 3 is supported by your vim).
+2) A python 2 or python 3 distribution is installed and it is working properly with Vim. The plugin relies only on standard libraries so there is no need to install extra packages in your python distribution.
 
-To check you have both conditions satisfied, simply fire your vim and do
+To check that you have both conditions satisfied, simply fire your vim and do
 
 ```:py print(“hello”)```
 or
@@ -21,7 +21,7 @@ or
 If you can see the output "hello" in the message area you are good to go. If not, see the FAQ at the bottom.
 
 ## Installation
-For vim version > 8.0 you can  install the plugin by
+For vim version > 8.0 you can install the plugin by
 ```
 cd ~/.vim/pack/plugins/start/
 git clone https://github.com/Ben201310/online-thesaurus-vim
@@ -37,13 +37,13 @@ git clone https://github.com/Ben201310/online-thesaurus-vim
 ## Usage
 Usage is simple.
 
-1) Put your cursor on the word whose antonyms and synonyms you would like to know, then press
+1) Put your cursor on the word whose antonyms and synonyms you would like to find, then press
 ```
 <Leader>t
  ```
  A preview windows will open at the bottom of the current window with retrieved content. You can close the window by pressing ```q```
 
-Alternatively, you could run the command
+Alternatively, you can run the command
 ```
 :ThesaurusCurrent<CR>
 ```
@@ -54,11 +54,12 @@ Alternatively, you could run the command
 ```
 
 ## Customization
-If you prefer a different key map for looking up the word under your cursor, put the following in the .vimrc file
+1) If you prefer a different key map for looking up the word under your cursor, put the following in the .vimrc file
 ```
 let g:use_default_key_map = 0
 nnoremap YOUR_OWN_KEY :call Thesaurus_LookCurrentWord()<CR>
 ```
+2) By default this plugin uses python 2. To use python 3 instead, put "set pyx=3" in your .vimrc. When vim is compiled with only python 3 support, "set pyx=3" becomes compulsory.
 
 ## FAQ
 1. If your python support test does not go through,
