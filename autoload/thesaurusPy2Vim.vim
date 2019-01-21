@@ -20,15 +20,15 @@ let g:thesauruspy2vim= 1
 "take the import outside so that you don't need to import
 "evertime you call the function
 
-python import vim
-python import sys
+pythonx import vim
+pythonx import sys
 "
 "append sys.path so that modules can be found
 "relative path import only works with  package
 let s:currentScriptPath = expand('<sfile>:p:h')
 let s:modulePath = s:currentScriptPath . '/../modules/'
-python sys.path.append(vim.eval('s:modulePath'))
-python from extract_thesaurus import *
+pythonx sys.path.append(vim.eval('s:modulePath'))
+pythonx from extract_thesaurus import *
 
 " note you cannot use python 'from extract_thesaurus import *'
 " because these "quotes will be carried over and the python
@@ -45,7 +45,7 @@ function! Thesaurus_LookWord(word)
     "noting the following way of argument passing through vim module
     "Note you cannot indent the closing EOF
 
-python << EOF
+pythonx << EOF
 definition_family_list = online_thesaurus(vim.eval("a:word"))
 
 cb = vim.current.buffer
