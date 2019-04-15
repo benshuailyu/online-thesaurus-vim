@@ -20,8 +20,11 @@ def save_retrieved_html(word):
 
     url = 'http://www.thesaurus.com/browse/' + word + '?s=t'
     temp_file_name = tempfile.mktemp()
-    common_urlretrieve(url, temp_file_name)
-    return temp_file_name
+    try:
+        common_urlretrieve(url, temp_file_name)
+        return temp_file_name
+    except:
+        return None
 
 
 def extract_definition_line(tem_file_name):

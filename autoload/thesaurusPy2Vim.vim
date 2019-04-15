@@ -34,42 +34,56 @@ pythonx from extract_thesaurus import *
 " because these "quotes will be carried over and the python
 " statement is a string obj.
 
-function! Thesaurus_LookWord(word)
+function! thesaurusPy2Vim#Thesaurus_LookWord(word)
 
-    exec ":silent belowright 10split thesaurus-for-" . a:word
+pythonx << EOF
+definition_family_list = online_thesaurus(vim.eval("a:word"))
+if definition_family_list:
+    vim.command("let l:test_family=1")
+else:
+    vim.command("let l:test_family=0")
+EOF
 
-    setlocal noswapfile nobuflisted nospell modifiable
-    setlocal buftype=nofile bufhidden=hide
-    nnoremap <silent> <buffer> q :q<CR>
+    if l:test_family == 1
+        exec ":silent belowright 10split thesaurus-for-" . a:word
+
+        setlocal noswapfile nobuflisted nospell modifiable
+        setlocal buftype=nofile bufhidden=hide
+        nnoremap <silent> <buffer> q :q<CR>
+    endif
 
     "noting the following way of argument passing through vim module
     "Note you cannot indent the closing EOF
 
 pythonx << EOF
 definition_family_list = online_thesaurus(vim.eval("a:word"))
+if definition_family_list:
+    cb = vim.current.buffer
+    cb[:]=None # delete everything in the buffer just in case
 
-cb = vim.current.buffer
-cb[:]=None # delete everything in the buffer just in case
-
-for each_family in definition_family_list:
-    cb.append("DEFINITION: " + each_family._definition)
-    cb.append("PART OF SPEECH: " + each_family._syntax)
-    cb.append('SYNONYMS: '  +
-              ', '.join(each_family._synonyms))
-    cb.append('ANTONYMS: ' +
-              ', '.join(each_family._antonyms))
-    cb.append(' ')
+    for each_family in definition_family_list:
+        cb.append("DEFINITION: " + each_family._definition)
+        cb.append("PART OF SPEECH: " + each_family._syntax)
+        cb.append('SYNONYMS: '  +
+                  ', '.join(each_family._synonyms))
+        cb.append('ANTONYMS: ' +
+                  ', '.join(each_family._antonyms))
+        cb.append(' ')
+    cb[0] = None
 # note the buffer appending starts from the second line.
 # delete the first empt
-cb[0] = None
 EOF
-setlocal nomodifiable filetype=thesaurus
+    if l:test_family == 1
+        setlocal nomodifiable filetype=thesaurus
+    else
+        echo 'No similar word'
+    endif
 endfunction
 
 
 function! thesaurusPy2Vim#Thesaurus_LookCurrentWord()
 
     let currentWord = expand("<cword>")
-    call Thesaurus_LookWord(currentWord)
+    call thesaurusPy2Vim#Thesaurus_LookWord(currentWord)
 
 endfunction
