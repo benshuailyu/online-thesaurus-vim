@@ -16,12 +16,12 @@ let b:current_syntax = "thesaurus"
 
 syntax case match
 
-syntax keyword definition DEFINITION:
-syntax keyword syntax PART OF SPEECH:
-syntax keyword synonym SYNONYMS:
-syntax keyword antonym ANTONYMS:
+syntax keyword definition DEFINITION
+syntax keyword syntax PART OF SPEECH
+syntax keyword synonym SYNONYMS
+syntax keyword antonym ANTONYMS
 
-hi link definition keyword
-hi link syntax keyword
-hi link synonym keyword
-hi link antonym keyword
+hi link definition DiffAdd
+hi link syntax DiffAdd
+hi link synonym DiffAdd
+hi link antonym DiffAdd
