@@ -73,9 +73,8 @@ def split_definition_groups(definition_line):
     synatic function, synonyms and antonyms. Each group has the following format
 
     {"isInformal": null, ... definition: "very great",...
-    "pos", ajd", "synonyms": [{"similarity":"100", ..."targetTerm": "acute"...}{}{}...],
-    "antonyms": [{"similarity":"-100", ...TargetTerm: "calm",...},{},{}....]a
-    }
+    "pos", ajd", "synonyms": [{"similarity":"100", ..."targetTerm": "acute"...}{}{}...{}],
+    "antonyms": [{"similarity":"-100", ...TargetTerm: "calm",...},{},{}....{}],"note":null}
 
     Note the above group is a one-line string when returned as list member
 
@@ -85,7 +84,7 @@ def split_definition_groups(definition_line):
 
     and it returns a list of strings.
     '''
-    return re.findall(r"{\"isInformal\":.*?}\]}", definition_line)
+    return re.findall(r"{\"isInformal\":.*?}\],\"note\":null}", definition_line)
     "note here we need to use non-greedy .*? arbitrary matches"
 
 
