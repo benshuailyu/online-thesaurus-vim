@@ -34,56 +34,44 @@ pythonx from extract_thesaurus import *
 " because these "quotes will be carried over and the python
 " statement is a string obj.
 
-function! thesaurusPy2Vim#Thesaurus_LookWord(word)
+function! Thesaurus_LookWord(word)
 
-pythonx << EOF
-definition_family_list = online_thesaurus(vim.eval("a:word"))
-if definition_family_list:
-    vim.command("let l:test_family=1")
-else:
-    vim.command("let l:test_family=0")
-EOF
+    exec ":silent belowright 10split thesaurus-for-" . a:word
 
-    if l:test_family == 1
-        exec ":silent belowright 10split thesaurus-for-" . a:word
-
-        setlocal noswapfile nobuflisted nospell modifiable
-        setlocal buftype=nofile bufhidden=hide
-        nnoremap <silent> <buffer> q :q<CR>
-    endif
+    setlocal noswapfile nobuflisted nospell modifiable
+    setlocal buftype=nofile bufhidden=hide
+    nnoremap <silent> <buffer> q :q<CR>
 
     "noting the following way of argument passing through vim module
     "Note you cannot indent the closing EOF
 
 pythonx << EOF
 definition_family_list = online_thesaurus(vim.eval("a:word"))
-if definition_family_list:
-    cb = vim.current.buffer
-    cb[:]=None # delete everything in the buffer just in case
+cb = vim.current.buffer
+cb[:]=None # delete everything in the buffer just in case
 
+if not definition_family_list:
+    cb.append("Nothing found online, check internet first")
+else:
     for each_family in definition_family_list:
         cb.append("DEFINITION: " + each_family._definition)
         cb.append("PART OF SPEECH: " + each_family._syntax)
         cb.append('SYNONYMS: '  +
-                  ', '.join(each_family._synonyms))
+              ', '.join(each_family._synonyms))
         cb.append('ANTONYMS: ' +
-                  ', '.join(each_family._antonyms))
+              ', '.join(each_family._antonyms))
         cb.append(' ')
-    cb[0] = None
 # note the buffer appending starts from the second line.
 # delete the first empt
+cb[0] = None
 EOF
-    if l:test_family == 1
-        setlocal nomodifiable filetype=thesaurus
-    else
-        echo 'No similar word'
-    endif
+setlocal nomodifiable filetype=thesaurus
 endfunction
 
 
 function! thesaurusPy2Vim#Thesaurus_LookCurrentWord()
 
     let currentWord = expand("<cword>")
-    call thesaurusPy2Vim#Thesaurus_LookWord(currentWord)
+    call Thesaurus_LookWord(currentWord)
 
 endfunction
