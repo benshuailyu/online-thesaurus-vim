@@ -44,7 +44,7 @@ def extract_definition_line(tem_file_name):
             while line != '':
                 line1 = line.lstrip()
                 line2 = line1.rstrip()
-                if (line2[0:28] == '<script>window.INITIAL_STATE'):
+                if (line2[0:24] == 'window.__PRELOADED_STATE'):
                     definition_line = line2
                     break
                 line = f.readline().encode('utf-8')
@@ -57,7 +57,7 @@ def extract_definition_line(tem_file_name):
             while line != '':
                 line1 = line.lstrip()
                 line2 = line1.rstrip()
-                if (line2[0:28] == '<script>window.INITIAL_STATE'):
+                if (line2[0:24] == 'window.__PRELOADED_STATE'):
                     definition_line = line2
                     break
                 line = f.readline()
