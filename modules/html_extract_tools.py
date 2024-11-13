@@ -76,6 +76,10 @@ def split_definition_groups(definition_line):
     "pos", ajd", "synonyms": [{"similarity":"100", ..."targetTerm": "acute"...}{}{}...{}],
     "antonyms": [{"similarity":"-100", ...TargetTerm: "calm",...},{},{}....{}],"note":null}
 
+    However when there are no matched antonyms, the above ends with 
+    "antonyms": [],"note":null}. Therefore in regular expression pattern should not include the } 
+    in front of ].
+
     Note the above group is a one-line string when returned as list member
 
     The call signature is
@@ -84,7 +88,7 @@ def split_definition_groups(definition_line):
 
     and it returns a list of strings.
     '''
-    return re.findall(r"{\"isInformal\":.*?}\],\"note\":null}", definition_line)
+    return re.findall(r"{\"isInformal\":.*?\],\"note\":null}", definition_line)
     "note here we need to use non-greedy .*? arbitrary matches"
 
 
