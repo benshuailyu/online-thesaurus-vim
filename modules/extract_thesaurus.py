@@ -17,7 +17,7 @@ from html_extract_tools import *
 
 
 def online_thesaurus(word):
-    html_fname = save_retrieved_html(word)
+    html_fname = retrieve_and_save_html(word)
     if not html_fname:
         return []
     super_long_definition_line = extract_definition_line(html_fname)

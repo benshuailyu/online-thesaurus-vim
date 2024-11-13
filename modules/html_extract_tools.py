@@ -12,7 +12,7 @@ elif sys.version_info[0] <= 2:
     import io
 
 
-def save_retrieved_html(word):
+def retrieve_and_save_html(word):
     '''This function retrieves the html page for the word "word",
     then save the file to a temporary file. The file name will
     be returned at the end.
@@ -29,7 +29,7 @@ def save_retrieved_html(word):
 
 def extract_definition_line(tem_file_name):
     '''This function opens the webpage file stored previously using the
-    function save_retrieved_html(). Then it looks for the line containing
+    function retrieve_and_save_html(). Then it looks for the line containing
     all the definitions, synonyms and antonyms. These explanation is stored
     soley within one super long line. This function returns this long line using
     a string object
